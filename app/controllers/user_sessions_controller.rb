@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
-    skip_before_action :require_login, only: %i[new create]
-    skip_before_action :check_mfa, only: %i[new create destroy]
+    skip_before_action :require_login, only: %i[new create guest_login]
+    skip_before_action :check_mfa, only: %i[new create destroy guest_login]
 
     def new; end
 
@@ -26,5 +26,19 @@ class UserSessionsController < ApplicationController
         UserMfaSession.destroy
         flash[:notice] = "ログアウトしました！"
         redirect_to root_path, status: :see_other
+    end
+
+    def guest_login
+      user = login("guest_user@example.com", "password1234")
+      if user
+        token = SecureRandom.hex(32)
+        user.update!(mfa_session_token: token)
+        UserMfaSession.create(user)
+        flash[:notice] = "ゲストログインが完了しました！"
+        redirect_to root_path
+      else
+        flash.now[:alert] = "ゲストユーザーが存在しません！"
+        render :new, status: :unprocessable_entity
+      end
     end
 end
