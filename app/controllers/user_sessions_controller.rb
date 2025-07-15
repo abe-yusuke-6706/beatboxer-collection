@@ -31,7 +31,10 @@ class UserSessionsController < ApplicationController
     def guest_login
       user = login("guest_user@example.com", "password1234")
       if user
-        flash[:notice] = "ログインが完了しました！"
+        token = SecureRandom.hex(32)
+        user.update!(mfa_session_token: token)
+        UserMfaSession.create(user)
+        flash[:notice] = "ゲストログインが完了しました！"
         redirect_to root_path
       else
         flash.now[:alert] = "ゲストユーザーが存在しません！"
