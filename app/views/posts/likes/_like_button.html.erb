@@ -1,0 +1,5 @@
+<% if @liked_post.include?(post.id) %>
+    <%= render "posts/likes/like", post: post %>
+<% else %>
+    <%= render "posts/likes/unlike", post: post %>
+<% end %>

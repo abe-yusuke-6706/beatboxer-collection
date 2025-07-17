@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get :bookmarks, on: :collection
     resource :bookmarks, only: %i[create destroy]
     resources :comments, only: %i[create destroy]
+    get :likes, on: :collection
+    resource :likes, only: %i[create destroy]
   end
   resource :profile, only: %i[show edit update]
 
