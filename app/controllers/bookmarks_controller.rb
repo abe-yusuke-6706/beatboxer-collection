@@ -16,12 +16,10 @@ class BookmarksController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    bookmark = current_user.bookmarks.find_by(post: @post)
-    bookmark.destroy
+    current_user.unbookmark(@post)
 
     respond_to do |format|
       format.turbo_stream do
-        current_user.unbookmark(@post)
         flash.now[:notice] = "ブックマークを解除しました！"
         render turbo_stream: [
           turbo_stream.replace("flash-messages", partial: "layouts/flash"),

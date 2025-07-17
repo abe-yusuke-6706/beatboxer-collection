@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
 
   mount_uploader :avatar, AvatarUploader
 
@@ -40,5 +42,13 @@ class User < ApplicationRecord
 
   def bookmark?(post)
     bookmark_posts.exists?(post.id)
+  end
+
+  def like(post)
+    like_posts << post
+  end
+
+  def unlike(post)
+    like_posts.delete(post)
   end
 end

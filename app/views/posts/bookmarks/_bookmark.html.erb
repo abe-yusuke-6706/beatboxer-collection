@@ -1,3 +1,3 @@
 <div class="absolute top-0 right-0 mt-1 ml-2" id="bookmark-button-<%= post.id %>">
-    <%= link_to image_tag("bookmark_icon.png", class: "w-5 h-auto"), post_bookmarks_path(post.id), data: { turbo_method: :delete } %>
+    <%= link_to image_tag("bookmark_icon.png", class: "w-6 h-auto"), post_bookmarks_path(post.id), data: { turbo_method: :delete } %>
 </div>

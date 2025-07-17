@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     skip_before_action :require_login, only: [ :index ]
     skip_before_action :check_mfa, only: [ :index ]
-    before_action :set_bookmarks_data, only: [ :bookmarks, :index, :show ]
+    before_action :set_collect_data, only: [ :bookmarks, :likes, :index, :show ]
 
     def bookmarks
         if @bookmarked_post.blank?
@@ -11,6 +11,16 @@ class PostsController < ApplicationController
         end
 
         @bookmark_list = Post.where(id: current_user.bookmarks.pluck(:post_id)).page(params[:page]).per(12)
+    end
+
+    def likes
+        if @liked_post.blank?
+            flash[:alert] = "いいねが登録されていません！"
+            redirect_to root_path
+            return
+        end
+
+        @like_list = Post.where(id: current_user.likes.pluck(:post_id)).page(params[:page]).per(12)
     end
 
     def index
@@ -53,9 +63,10 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :youtube_video, :body).merge(user_id: current_user.id)
     end
 
-    def set_bookmarks_data
+    def set_collect_data
         if current_user
             @bookmarked_post = current_user.bookmark_posts.pluck(:id)
+            @liked_post = current_user.like_posts.pluck(:id)
         end
     end
 end

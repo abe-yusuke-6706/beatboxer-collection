@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "likes/create"
+  get "likes/destroy"
   get "user_mfa_sessions/new"
   get "user_mfa_sessions/create"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
     get :bookmarks, on: :collection
     resource :bookmarks, only: %i[create destroy]
     resources :comments, only: %i[create destroy]
+    get :likes, on: :collection
+    resource :likes, only: %i[create destroy]
   end
   resource :profile, only: %i[show edit update]
 
