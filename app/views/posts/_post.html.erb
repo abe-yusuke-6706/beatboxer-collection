@@ -14,7 +14,7 @@
         <% if current_user %>
             <div>
                 <%= render "posts/likes/like_button", post: post %>
-                <p class="absolute right-7 top-1 text-sm opacity-60 text-gray-800"><%= post.likes_count %></p>
+                <%= render "posts/likes/like_count", post: post %>
             </div>
             <div>
                 <%= render "posts/bookmarks/bookmark_button", post: post %>
