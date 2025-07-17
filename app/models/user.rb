@@ -43,4 +43,12 @@ class User < ApplicationRecord
   def bookmark?(post)
     bookmark_posts.exists?(post.id)
   end
+
+  def like(post)
+    like_posts << post
+  end
+
+  def unlike(post)
+    like_posts.delete(post)
+  end
 end

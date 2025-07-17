@@ -20,7 +20,7 @@ class PostsController < ApplicationController
             return
         end
 
-        @like_list = Post.where(id: current_user.bookmarks.pluck(:post_id)).page(params[:page]).per(12)
+        @like_list = Post.where(id: current_user.likes.pluck(:post_id)).page(params[:page]).per(12)
     end
 
     def index
