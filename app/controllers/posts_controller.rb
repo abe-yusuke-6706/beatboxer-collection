@@ -39,7 +39,9 @@ class PostsController < ApplicationController
 
     def create
         post = Post.new(post_params)
+        tags = params[:post][:tag_id].split(",")
         if post.save
+            post.save_tags(tags)
             flash[:notice] = "投稿しました！"
             redirect_to root_path
         else
