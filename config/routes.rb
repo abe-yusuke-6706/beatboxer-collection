@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "tags/index"
   get "likes/create"
   get "likes/destroy"
   get "user_mfa_sessions/new"
@@ -22,7 +23,6 @@ Rails.application.routes.draw do
       get :activate
     end
   end
-  resources :beatboxers
   resources :posts do
     get :bookmarks, on: :collection
     resource :bookmarks, only: %i[create destroy]
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get :likes, on: :collection
     resource :likes, only: %i[create destroy]
   end
+  resources :tags, only: [ :index ]
   resource :profile, only: %i[show edit update]
 
   get "login", to: "user_sessions#new"
