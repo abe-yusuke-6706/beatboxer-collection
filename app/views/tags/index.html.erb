@@ -1,0 +1,9 @@
+<div class="mt-8 mb-8 gap-8 flex flex-wrap items-center justify-center">
+  <% if @tags.present? %>
+      <%= render @tags %>
+  <% else %>
+      <div class='text-lg text-center'>タグがありません</div>
+  <% end %>
+</div>
+
+<%= paginate @tags %>
