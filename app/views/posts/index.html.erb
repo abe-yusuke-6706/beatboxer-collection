@@ -1,4 +1,5 @@
 <div class="mt-8 mb-8 gap-8 flex flex-wrap items-center justify-center">
+    <%= render 'search', q: @q, url: posts_path %>
     <% if @posts.present? %>
         <%= render @posts %>
     <% else %>
