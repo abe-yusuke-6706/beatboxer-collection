@@ -37,7 +37,7 @@ gem "thruster", require: false
 
 gem "sorcery"
 gem "kaminari"
-gem "cssbundling-rails"
+# gem "cssbundling-rails"
 gem "jsbundling-rails"
 gem "carrierwave", "~> 3.0"
 gem "gon"
