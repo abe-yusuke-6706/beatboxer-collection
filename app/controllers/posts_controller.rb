@@ -24,7 +24,8 @@ class PostsController < ApplicationController
     end
 
     def index
-        @posts = Post.order(id: :desc).page(params[:page]).per(12)
+        @q = Post.ransack(params[:q])
+        @posts = @q.result.order(id: :desc).page(params[:page]).per(12)
     end
 
     def show

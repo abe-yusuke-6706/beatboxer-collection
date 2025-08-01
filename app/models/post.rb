@@ -18,4 +18,12 @@ class Post < ApplicationRecord
             self.tags.find_or_create_by(name: tag)
         end
     end
+
+    def self.ransackable_attributes(auth_object = nil)
+        [ "beatboxer_id", "body", "created_at", "id", "likes_count", "title", "updated_at", "user_id", "youtube_video" ]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+        [ "bookmarks", "comments", "likes", "tag_relations", "tags", "user" ]
+    end
 end

@@ -85,3 +85,5 @@ gem "watchman", "~> 0.1.1"
 gem "webrick", "~> 1.9"
 
 gem "iconv", "~> 1.1"
+
+gem "ransack"
