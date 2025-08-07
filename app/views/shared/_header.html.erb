@@ -14,7 +14,7 @@
                         <li><%= link_to "プロフィール", profile_path %></li>
                         <li><%= link_to "ブックマーク", bookmarks_posts_path %></li>
                         <li><%= link_to "いいね一覧", likes_posts_path %></li>
-                        <li><%= link_to "タグ一覧", tags_path %></li>
+                        <li><%= link_to "タグ一覧", tags_index_path %></li>
                         <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
                     <% else %>
                         <li><%= link_to "ゲストログイン", guest_login_path, data: { turbo_method: :post } %></li>
