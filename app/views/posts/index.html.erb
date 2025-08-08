@@ -1,6 +1,10 @@
-<div class="mt-8 flex items-center justify-center">
-  <%= render 'search', q: @q, url: posts_path %>
-</div>
+<% if @q %>
+    <div class="mt-8 flex items-center justify-center">
+    <%= render 'posts/search', q: @q, url: posts_path %>
+    </div>
+<% else %>
+    <h2 class="mt-8 flex items-center justify-center">「 <%= @tag.name %> 」タグの検索結果</h2>
+<% end %>
 
 <div class="mt-8 mb-8 gap-8 flex flex-wrap items-center justify-center">
     <% if @posts.present? %>
