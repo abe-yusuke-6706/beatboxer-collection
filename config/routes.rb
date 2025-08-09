@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get :likes, on: :collection
     resource :likes, only: %i[create destroy]
   end
-  resources :tags, only: [ :index ]
+  resources :tags, only: %i[ index, show ]
   resource :profile, only: %i[show edit update]
 
   get "login", to: "user_sessions#new"

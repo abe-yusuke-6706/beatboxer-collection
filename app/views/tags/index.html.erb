@@ -1,8 +1,10 @@
 <div class="mt-8 mb-8 gap-8 flex flex-wrap items-center justify-center">
   <% if @tags.present? %>
-      <%= render @tags %>
+    <% @tags.each do |tag| %>
+      <%= link_to tag.name, tag_path(tag), class: "badge badge-soft badge-secondary" %>
+    <% end %>
   <% else %>
-      <div class='text-lg text-center'>タグがありません</div>
+    <div class='text-lg text-center'>タグがありません</div>
   <% end %>
 </div>
 

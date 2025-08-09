@@ -13,9 +13,10 @@ class Post < ApplicationRecord
         bookmarks.where(user_id: user).exists?
     end
 
-    def save_tags(tags)
-        tags.each do |tag|
-            self.tags.find_or_create_by(name: tag)
+    def save_tags(tag_names)
+        tag_names.each do |tag_name|
+            tag = Tag.find_or_create_by(name: tag_name)
+            self.tags << tag unless self.tags.include?(tag)
         end
     end
 
