@@ -3,7 +3,13 @@
     <%= render 'posts/search', q: @q, url: posts_path %>
     </div>
 <% else %>
-    <h2 class="mt-8 flex items-center justify-center">「 <%= @tag.name %> 」タグの検索結果</h2>
+    <div class="flex items-center justify-center">    
+        <div class="card card-dash bg-base-100 mt-8 w-90 h-10 flex items-center justify-center"> 
+            <h2 class="card-title">
+            「 <%= @tag.name %> 」タグの検索結果
+            </h2>
+        </div>
+    </div>
 <% end %>
 
 <div class="mt-8 mb-8 gap-8 flex flex-wrap items-center justify-center">
