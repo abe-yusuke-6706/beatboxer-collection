@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get :activate
     end
   end
+
   resources :posts do
     get :bookmarks, on: :collection
     resource :bookmarks, only: %i[create destroy]
@@ -30,8 +31,12 @@ Rails.application.routes.draw do
     get :likes, on: :collection
     resource :likes, only: %i[create destroy]
   end
+
   resources :tags, only: %i[ index, show ]
   resource :profile, only: %i[show edit update]
+
+  get "terms_of_service", to: "static_pages#terms_of_service"
+  get "privacy_policy", to: "static_pages#privacy_policy"
 
   get "login", to: "user_sessions#new"
   post "login", to: "user_sessions#create"
